@@ -46,6 +46,81 @@ describe( 'middleware', function() {
 
         } );
 
+        it( 'should validate zero', function( done ) {
+
+            app.use( function *() {
+
+                this.checkBody( 'integer' ).isInteger();
+
+                if ( this.errors ) {
+                    this.status = 400;
+                }
+                else {
+                    this.status = 200;
+                }
+
+            });
+
+            let request = supertest( app.listen() );
+
+            request.post( '/' )
+                .send({
+                    integer: 0
+                })
+                .expect( 200, done );
+
+        } );
+
+        it( 'should validate a negative value', function( done ) {
+
+            app.use( function *() {
+
+                this.checkBody( 'integer' ).isInteger();
+
+                if ( this.errors ) {
+                    this.status = 400;
+                }
+                else {
+                    this.status = 200;
+                }
+
+            });
+
+            let request = supertest( app.listen() );
+
+            request.post( '/' )
+                .send({
+                    integer: -1
+                })
+                .expect( 200, done );
+
+        } );
+
+        it( 'should not validate a float', function( done ) {
+
+            app.use( function *() {
+
+                this.checkBody( 'integer' ).isInteger();
+
+                if ( this.errors ) {
+                    this.status = 400;
+                }
+                else {
+                    this.status = 200;
+                }
+
+            });
+
+            let request = supertest( app.listen() );
+
+            request.post( '/' )
+                .send({
+                    integer: 0.1
+                })
+                .expect( 400, done );
+
+        } );
+
         it( 'should not validate a string', function( done ) {
 
             app.use( function *() {
