@@ -16,6 +16,12 @@ describe( 'isJSON', function() {
 
         });
 
+        it( 'should return false for null', function() {
+
+            expect( isJSON( null ) ).to.be.false;
+
+        });
+
         it( 'should return false for an empty object in a string', function() {
 
             expect( isJSON( '{}' ) ).to.be.false;
