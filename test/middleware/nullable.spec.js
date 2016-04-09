@@ -334,6 +334,149 @@ describe( 'middleware', function() {
 
         });
 
+        describe( 'checkQuery', function() {
+
+            it( 'should validate null', function( done ) {
+
+                let router = koa_router();
+
+                router.get( '/', function *() {
+
+                    this.checkQuery( '_null' ).nullable().isBoolean();
+
+                    if ( this.errors ) {
+                        this.status = 400;
+                    }
+                    else {
+                        this.status = 200;
+                    }
+
+                });
+
+                app.use( router.routes() );
+
+                let request = supertest( app.listen() );
+
+                request.get( '/?_null=null' )
+                    .expect( 200 )
+                    .end( done );
+
+            } );
+
+            it( 'should validate "true"', function( done ) {
+
+                let router = koa_router();
+
+                router.get( '/', function *() {
+
+                    this.checkQuery( '_null' ).nullable().isBoolean();
+
+                    if ( this.errors ) {
+                        this.status = 400;
+                    }
+                    else {
+                        this.status = 200;
+                    }
+
+                });
+
+                app.use( router.routes() );
+
+                let request = supertest( app.listen() );
+
+                request.get( '/?_null=true' )
+                    .expect( 200, done );
+
+            } );
+
+            it( 'should validate "false"', function( done ) {
+
+                let router = koa_router();
+
+                router.get( '/', function *() {
+
+                    this.checkQuery( '_null' ).nullable().isBoolean();
+
+                    if ( this.errors ) {
+                        this.status = 400;
+                    }
+                    else {
+                        this.status = 200;
+                    }
+
+                });
+
+                app.use( router.routes() );
+
+                let request = supertest( app.listen() );
+
+                request.get( '/?_null=false' )
+                    .expect( 200, done );
+
+            } );
+
+            it( 'should not validate "undefined"', function( done ) {
+
+                let router = koa_router();
+
+                router.get( '/', function *() {
+
+                    this.checkQuery( '_null' ).nullable().isBoolean();
+
+                    if ( this.errors ) {
+                        this.status = 400;
+                    }
+                    else {
+                        this.status = 200;
+                    }
+
+                });
+
+                app.use( router.routes() );
+
+                let request = supertest( app.listen() );
+
+                request.get( '/?_null=undefined' )
+                    .expect( 400, done );
+
+            } );
+
+            it( 'should throw an error if the validator chain is in the wrong order', function( done ) {
+
+                let router = koa_router();
+
+                router.get( '/', function *() {
+
+                    try {
+                        this.checkQuery( '_null' ).isBoolean().nullable();
+                    }
+                    catch( e ) {
+                        this.status = 500;
+                        this.body = e.id;
+                        return;
+                    }
+
+                    if ( this.errors ) {
+                        this.status = 400;
+                    }
+                    else {
+                        this.status = 200;
+                    }
+
+                });
+
+                app.use( router.routes() );
+
+                let request = supertest( app.listen() );
+
+                request.get( '/?_null=null' )
+                    .expect( 500 )
+                    .end( done );
+
+            } );
+
+        });
+
     });
 
 });
