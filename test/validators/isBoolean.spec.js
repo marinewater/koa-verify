@@ -6,75 +6,252 @@ const isBoolean = require( '../../lib/validators/isBoolean' );
 
 describe( 'isBoolean', function() {
 
-    it( 'should return true for true', function() {
+    describe( 'default options', function() {
 
-        expect( isBoolean( true ) ).to.be.true;
+        it( 'should return true for true', function() {
+
+            expect( isBoolean( true ) ).to.be.true;
+
+        });
+
+        it( 'should return true for false', function() {
+
+            expect( isBoolean( false ) ).to.be.true;
+
+        });
+
+        it( 'should return false for null', function() {
+
+            expect( isBoolean( null ) ).to.be.false;
+
+        });
+
+        it( 'should return false for no argument', function() {
+
+            expect( isBoolean() ).to.be.false;
+
+        });
+
+        it( 'should return false for undefined', function() {
+
+            expect( isBoolean( undefined ) ).to.be.false;
+
+        });
+
+        it( 'should return false for 1', function() {
+
+            expect( isBoolean( 1 ) ).to.be.false;
+
+        });
+
+        it( 'should return false for 0', function() {
+
+            expect( isBoolean( 0 ) ).to.be.false;
+
+        });
+
+        it( 'should return false for -1', function() {
+
+            expect( isBoolean( -1 ) ).to.be.false;
+
+        });
+
+        it( 'should return false for an empty string', function() {
+
+            expect( isBoolean( '' ) ).to.be.false;
+
+        });
+
+        it( 'should return false for a string', function() {
+
+            expect( isBoolean( 'a' ) ).to.be.false;
+
+        });
+
+        it( 'should return false for "true"', function() {
+
+            expect( isBoolean( 'true' ) ).to.be.false;
+
+        });
+
+        it( 'should return false for "false"', function() {
+
+            expect( isBoolean( 'false' ) ).to.be.false;
+
+        });
 
     });
 
-    it( 'should return true for false', function() {
+    describe( 'parseString', function() {
 
-        expect( isBoolean( false ) ).to.be.true;
+        const options = {
+            parseString: true
+        };
+
+        it( 'should return true for true', function() {
+
+            expect( isBoolean( true, options ) ).to.be.true;
+
+        });
+
+        it( 'should return true for false', function() {
+
+            expect( isBoolean( false, options ) ).to.be.true;
+
+        });
+
+        it( 'should return false for null', function() {
+
+            expect( isBoolean( null, options ) ).to.be.false;
+
+        });
+
+        it( 'should return false for undefined', function() {
+
+            expect( isBoolean( undefined, options ) ).to.be.false;
+
+        });
+
+        it( 'should return false for 1', function() {
+
+            expect( isBoolean( 1, options ) ).to.be.false;
+
+        });
+
+        it( 'should return false for 0', function() {
+
+            expect( isBoolean( 0, options ) ).to.be.false;
+
+        });
+
+        it( 'should return false for -1', function() {
+
+            expect( isBoolean( -1, options ) ).to.be.false;
+
+        });
+
+        it( 'should return false for an empty string', function() {
+
+            expect( isBoolean( '', options ) ).to.be.false;
+
+        });
+
+        it( 'should return false for a string', function() {
+
+            expect( isBoolean( 'a', options ) ).to.be.false;
+
+        });
+
+        it( 'should return true for "true"', function() {
+
+            expect( isBoolean( 'true', options ) ).to.be.true;
+
+        });
+
+        it( 'should return true for "false"', function() {
+
+            expect( isBoolean( 'false', options ) ).to.be.true;
+
+        });
+
+        it( 'should return false for "TRUE"', function() {
+
+            expect( isBoolean( 'TRUE', options ) ).to.be.false;
+
+        });
+
+        it( 'should return false for "FALSE"', function() {
+
+            expect( isBoolean( 'FALSE', options ) ).to.be.false;
+
+        });
 
     });
 
-    it( 'should return false for null', function() {
+    describe( 'case insensitive', function() {
 
-        expect( isBoolean( null ) ).to.be.false;
+        const options = {
+            parseString: true,
+            caseSensitive: false
+        };
 
-    });
+        it( 'should return true for true', function() {
 
-    it( 'should return false for no argument', function() {
+            expect( isBoolean( true, options ) ).to.be.true;
 
-        expect( isBoolean() ).to.be.false;
+        });
 
-    });
+        it( 'should return true for false', function() {
 
-    it( 'should return false for undefined', function() {
+            expect( isBoolean( false, options ) ).to.be.true;
 
-        expect( isBoolean( undefined ) ).to.be.false;
+        });
 
-    });
+        it( 'should return false for null', function() {
 
-    it( 'should return false for 1', function() {
+            expect( isBoolean( null, options ) ).to.be.false;
 
-        expect( isBoolean( 1 ) ).to.be.false;
+        });
 
-    });
+        it( 'should return false for undefined', function() {
 
-    it( 'should return false for 0', function() {
+            expect( isBoolean( undefined, options ) ).to.be.false;
 
-        expect( isBoolean( 0 ) ).to.be.false;
+        });
 
-    });
+        it( 'should return false for 1', function() {
 
-    it( 'should return false for -1', function() {
+            expect( isBoolean( 1, options ) ).to.be.false;
 
-        expect( isBoolean( -1 ) ).to.be.false;
+        });
 
-    });
+        it( 'should return false for 0', function() {
 
-    it( 'should return false for an empty string', function() {
+            expect( isBoolean( 0, options ) ).to.be.false;
 
-        expect( isBoolean( '' ) ).to.be.false;
+        });
 
-    });
+        it( 'should return false for -1', function() {
 
-    it( 'should return false for a string', function() {
+            expect( isBoolean( -1, options ) ).to.be.false;
 
-        expect( isBoolean( 'a' ) ).to.be.false;
+        });
 
-    });
+        it( 'should return false for an empty string', function() {
 
-    it( 'should return false for "true"', function() {
+            expect( isBoolean( '', options ) ).to.be.false;
 
-        expect( isBoolean( 'true' ) ).to.be.false;
+        });
 
-    });
+        it( 'should return false for a string', function() {
 
-    it( 'should return false for "false"', function() {
+            expect( isBoolean( 'a', options ) ).to.be.false;
 
-        expect( isBoolean( 'false' ) ).to.be.false;
+        });
+
+        it( 'should return true for "true"', function() {
+
+            expect( isBoolean( 'true', options ) ).to.be.true;
+
+        });
+
+        it( 'should return true for "false"', function() {
+
+            expect( isBoolean( 'false', options ) ).to.be.true;
+
+        });
+
+        it( 'should return true for "TRUE"', function() {
+
+            expect( isBoolean( 'true', options ) ).to.be.true;
+
+        });
+
+        it( 'should return true for "FALSE"', function() {
+
+            expect( isBoolean( 'false', options ) ).to.be.true;
+
+        });
 
     });
 

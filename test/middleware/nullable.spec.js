@@ -193,12 +193,11 @@ describe( 'middleware', function() {
 
         describe( 'checkParams', function() {
 
-            it( 'should throw an error if the validator chain is in the wrong order', function( done ) {
+            it( 'should validate null', function( done ) {
 
                 let router = koa_router();
 
                 router.get( '/:_null', function *() {
-
 
                     this.checkParams( '_null' ).nullable().isBoolean();
 
@@ -217,6 +216,118 @@ describe( 'middleware', function() {
 
                 request.get( '/null' )
                     .expect( 200 )
+                    .end( done );
+
+            } );
+
+            it( 'should validate "true"', function( done ) {
+
+                let router = koa_router();
+
+                router.get( '/:boolean', function *() {
+
+                    this.checkParams( 'boolean' ).nullable().isBoolean();
+
+                    if ( this.errors ) {
+                        this.status = 400;
+                    }
+                    else {
+                        this.status = 200;
+                    }
+
+                });
+
+                app.use( router.routes() );
+
+                let request = supertest( app.listen() );
+
+                request.get( '/true' )
+                    .expect( 200, done );
+
+            } );
+
+            it( 'should validate "false"', function( done ) {
+
+                let router = koa_router();
+
+                router.get( '/:boolean', function *() {
+
+                    this.checkParams( 'boolean' ).nullable().isBoolean();
+
+                    if ( this.errors ) {
+                        this.status = 400;
+                    }
+                    else {
+                        this.status = 200;
+                    }
+
+                });
+
+                app.use( router.routes() );
+
+                let request = supertest( app.listen() );
+
+                request.get( '/false' )
+                    .expect( 200, done );
+
+            } );
+
+            it( 'should not validate "undefined"', function( done ) {
+
+                let router = koa_router();
+
+                router.get( '/:boolean', function *() {
+
+                    this.checkParams( 'boolean' ).nullable().isBoolean();
+
+                    if ( this.errors ) {
+                        this.status = 400;
+                    }
+                    else {
+                        this.status = 200;
+                    }
+
+                });
+
+                app.use( router.routes() );
+
+                let request = supertest( app.listen() );
+
+                request.get( '/undefined' )
+                    .expect( 400, done );
+
+            } );
+
+            it( 'should throw an error if the validator chain is in the wrong order', function( done ) {
+
+                let router = koa_router();
+
+                router.get( '/:_null', function *() {
+
+                    try {
+                        this.checkParams( '_null' ).isBoolean().nullable();
+                    }
+                    catch( e ) {
+                        this.status = 500;
+                        this.body = e.id;
+                        return;
+                    }
+
+                    if ( this.errors ) {
+                        this.status = 400;
+                    }
+                    else {
+                        this.status = 200;
+                    }
+
+                });
+
+                app.use( router.routes() );
+
+                let request = supertest( app.listen() );
+
+                request.get( '/null' )
+                    .expect( 500 )
                     .end( done );
 
             } );
