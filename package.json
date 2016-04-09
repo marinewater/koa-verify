@@ -1,10 +1,14 @@
 {
   "name": "validate",
-  "version": "",
-  "description": "",
+  "version": "0.0.0",
+  "description": "validate request body, params and query in koa",
   "main": "index.js",
   "scripts": {
     "test": "node_modules/mocha/bin/_mocha --ui bdd --recursive ./test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marinewater/koa-verify.git"
   },
   "author": "Martin Bukovics",
   "license": "MIT",
