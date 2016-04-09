@@ -1,6 +1,6 @@
 {
   "name": "validate",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "validate request body, params and query in koa",
   "main": "index.js",
   "scripts": {
