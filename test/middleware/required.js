@@ -145,6 +145,31 @@ describe( 'required middleware', function() {
 
         } );
 
+        it( 'should validate an empty string', function( done ) {
+
+            app.use( function *() {
+
+                this.checkBody( 'string' ).required().isString();
+
+                if ( this.errors ) {
+                    this.status = 400;
+                }
+                else {
+                    this.status = 200;
+                }
+
+            });
+
+            let request = supertest( app.listen() );
+
+            request.post( '/' )
+                .send({
+                    string: ''
+                })
+                .expect( 200, done );
+
+        } );
+
         it( 'should throw an error if the validator chain is in the wrong order', function( done ) {
 
             app.use( function *() {
@@ -320,7 +345,7 @@ describe( 'required middleware', function() {
 
             app.use( function *() {
 
-                this.checkBody( 'boolean' ).required( options ).isBoolean();
+                this.checkBody( 'string' ).required( options ).isString();
 
                 if ( this.errors ) {
                     this.status = 400;
@@ -335,7 +360,7 @@ describe( 'required middleware', function() {
 
             request.post( '/' )
                 .send({
-                    boolean: ''
+                    string: ''
                 })
                 .expect( 400, done );
 
