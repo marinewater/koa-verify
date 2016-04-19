@@ -1,6 +1,6 @@
 {
   "name": "koa-verify",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "validate request body, params and query in koa",
   "main": "index.js",
   "scripts": {
