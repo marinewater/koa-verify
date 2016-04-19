@@ -50,4 +50,10 @@ describe( 'isMatch', function() {
 
     });
 
+    it( 'should not match a number', function() {
+
+        expect( isMatch( 1, /.*/ ) ).to.be.false;
+
+    });
+
 });
