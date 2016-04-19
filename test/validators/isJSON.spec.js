@@ -1,7 +1,7 @@
 'use strict';
 
 var chai = require( 'chai' );
-const expect = chai.expect;
+const assert = chai.assert;
 
 const isJSON = require( '../../lib/validators/isJSON' );
 
@@ -12,37 +12,37 @@ describe( 'isJSON', function() {
 
         it( 'should return true for an empty object', function() {
 
-            expect( isJSON( {} ) ).to.be.true;
+            assert.isTrue( isJSON( {} ) );
 
         });
 
         it( 'should return false for null', function() {
 
-            expect( isJSON( null ) ).to.be.false;
+            assert.isFalse( isJSON( null ) );
 
         });
 
         it( 'should return false for an empty object in a string', function() {
 
-            expect( isJSON( '{}' ) ).to.be.false;
+            assert.isFalse( isJSON( '{}' ) );
 
         });
 
         it( 'should return false for an empty string', function() {
 
-            expect( isJSON( '' ) ).to.be.false;
+            assert.isFalse( isJSON( '' ) );
 
         });
 
         it( 'should return false for an array', function() {
 
-            expect( isJSON( [] ) ).to.be.false;
+            assert.isFalse( isJSON( [] ) );
 
         });
 
         it( 'should return false for a Date object', function() {
 
-            expect( isJSON( new Date() ) ).to.be.false;
+            assert.isFalse( isJSON( new Date() ) );
 
         });
 
@@ -58,45 +58,43 @@ describe( 'isJSON', function() {
 
         it( 'should return false for an object', function() {
 
-            expect( isJSON( {}, options ) ).to.be.false;
+            assert.isFalse( isJSON( {}, options ) );
 
         });
 
         it( 'should return false for an empty object in a string', function() {
 
-            let object_string = '{}';
-
-            expect( isJSON( object_string, options ) ).to.be.true;
+            assert.isTrue( isJSON( '{}', options ) );
 
         });
 
         it( 'should return false for an empty string', function() {
 
-            expect( isJSON( '', options ) ).to.be.false;
+            assert.isFalse( isJSON( '', options ) );
 
         });
 
         it( 'should return false for an array', function() {
 
-            expect( isJSON( [], options ) ).to.be.false;
+            assert.isFalse( isJSON( [], options ) );
 
         });
 
         it( 'should return true for an array in a string', function() {
 
-            expect( isJSON( '[]', options ) ).to.be.true;
+            assert.isTrue( isJSON( '[]', options ) );
 
         });
 
         it( 'should return false for a Date object', function() {
 
-            expect( isJSON( new Date(), options ) ).to.be.false;
+            assert.isFalse( isJSON( new Date(), options ) );
 
         });
 
         it( 'should return true for a stringified Date object', function() {
 
-            expect( isJSON( JSON.stringify( new Date() ), options ) ).to.be.true;
+            assert.isTrue( isJSON( JSON.stringify( new Date() ), options ) );
 
         });
 

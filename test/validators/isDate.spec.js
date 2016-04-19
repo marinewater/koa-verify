@@ -1,5 +1,5 @@
 var chai = require( 'chai' );
-const expect = chai.expect;
+const assert = chai.assert;
 
 const isDate = require( '../../lib/validators/isDate' );
 
@@ -10,61 +10,61 @@ describe( 'isDate', function() {
 
         it( 'should return true for stringified JSON date', function() {
 
-            expect( isDate( '2016-04-17T14:27:42.828Z' ) ).to.be.true;
+            assert.isTrue( isDate( '2016-04-17T14:27:42.828Z' ) );
 
         });
 
         it( 'should return true for javascript date object', function() {
 
-            expect( isDate( new Date() ) ).to.be.true;
+            assert.isTrue( isDate( new Date() ) );
 
         });
 
         it( 'should return false for an object', function() {
 
-            expect( isDate( { getMonth: function() {} } ) ).to.be.false;
+            assert.isFalse( isDate( { getMonth: function() {} } ) );
 
         });
 
         it( 'should return false for a string', function() {
 
-            expect( isDate( 'a' ) ).to.be.false;
+            assert.isFalse( isDate( 'a' ) );
 
         });
 
         it( 'should return false for a positive integer', function() {
 
-            expect( isDate( 1 ) ).to.be.false;
+            assert.isFalse( isDate( 1 ) );
 
         });
 
         it( 'should return false for a negative integer', function() {
 
-            expect( isDate( -1 ) ).to.be.false;
+            assert.isFalse( isDate( -1 ) );
 
         });
 
         it( 'should return false for a float', function() {
 
-            expect( isDate( 1.1 ) ).to.be.false;
+            assert.isFalse( isDate( 1.1 ) );
 
         });
 
         it( 'should return false for 0', function() {
 
-            expect( isDate( 0 ) ).to.be.false;
+            assert.isFalse( isDate( 0 ) );
 
         });
 
         it( 'should return false for null', function() {
 
-            expect( isDate( null ) ).to.be.false;
+            assert.isFalse( isDate( null ) );
 
         });
 
         it( 'should return false for undefined', function() {
 
-            expect( isDate( undefined ) ).to.be.false;
+            assert.isFalse( isDate( undefined ) );
 
         });
 
@@ -78,85 +78,85 @@ describe( 'isDate', function() {
 
         it( 'should return true for a normal JSON date', function() {
 
-            expect( isDate( '2016-04-17T14:27:42.828Z', options ) ).to.be.true;
+            assert.isTrue( isDate( '2016-04-17T14:27:42.828Z', options ) );
 
         });
 
         it( 'should return true for the german date format', function() {
 
-            expect( isDate( '17.04.2016', options ) ).to.be.true;
+            assert.isTrue( isDate( '17.04.2016', options ) );
 
         });
 
         it( 'should return false for a german date in the wrong order', function() {
 
-            expect( isDate( '04.17.2016', options ) ).to.be.false;
+            assert.isFalse( isDate( '04.17.2016', options ) );
 
         });
 
         it( 'should return false for the US date format', function() {
 
-            expect( isDate( '04/17/2016', options ) ).to.be.true;
+            assert.isTrue( isDate( '04/17/2016', options ) );
 
         });
 
         it( 'should return false for a US date in the wrong order', function() {
 
-            expect( isDate( '17/04/2016', options ) ).to.be.false;
+            assert.isFalse( isDate( '17/04/2016', options ) );
 
         });
 
         it( 'should return true for javascript date object', function() {
 
-            expect( isDate( new Date() ) ).to.be.true;
+            assert.isTrue( isDate( new Date(), options ) );
 
         });
 
         it( 'should return false for an object', function() {
 
-            expect( isDate( { getMonth: function() {} } ) ).to.be.false;
+            assert.isFalse( isDate( { getMonth: function() {} }, options ) );
 
         });
 
         it( 'should return false for a string', function() {
 
-            expect( isDate( 'a' ) ).to.be.false;
+            assert.isFalse( isDate( 'a', options ) );
 
         });
 
         it( 'should return false for a positive integer', function() {
 
-            expect( isDate( 1 ) ).to.be.false;
+            assert.isFalse( isDate( 1, options ) );
 
         });
 
         it( 'should return false for a negative integer', function() {
 
-            expect( isDate( -1 ) ).to.be.false;
+            assert.isFalse( isDate( -1, options ) );
 
         });
 
         it( 'should return false for a float', function() {
 
-            expect( isDate( 1.1 ) ).to.be.false;
+            assert.isFalse( isDate( 1.1, options ) );
 
         });
 
         it( 'should return false for 0', function() {
 
-            expect( isDate( 0 ) ).to.be.false;
+            assert.isFalse( isDate( 0, options ) );
 
         });
 
         it( 'should return false for null', function() {
 
-            expect( isDate( null ) ).to.be.false;
+            assert.isFalse( isDate( null, options ) );
 
         });
 
         it( 'should return false for undefined', function() {
 
-            expect( isDate( undefined ) ).to.be.false;
+            assert.isFalse( isDate( undefined, options ) );
 
         });
 

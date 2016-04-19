@@ -1,5 +1,5 @@
 var chai = require( 'chai' );
-const expect = chai.expect;
+const assert = chai.assert;
 
 const isInteger = require( '../../lib/validators/isInteger' );
 
@@ -9,91 +9,90 @@ describe( 'isInteger', function() {
 
         it( 'should return true for 1', function() {
 
-            expect( isInteger( 1 ) ).to.be.true;
+            assert.isTrue( isInteger( 1 ) );
 
         });
 
         it( 'should return true for 0', function() {
 
-            expect( isInteger( 0 ) ).to.be.true;
+            assert.isTrue( isInteger( 0 ) );
 
         });
 
         it( 'should return true for -1', function() {
 
-            expect( isInteger( -1 ) ).to.be.true;
+            assert.isTrue( isInteger( -1 ) );
 
         });
 
         it( 'should return false for 0.1', function() {
 
-            expect( isInteger( 0.1 ) ).to.be.false;
+            assert.isFalse( isInteger( 0.1 ) );
 
         });
 
         it( 'should return false for -0.1', function() {
 
-            expect( isInteger( -0.1 ) ).to.be.false;
-
+            assert.isFalse( isInteger( -0.1 ) );
         });
 
         it( 'should return false for "0"', function() {
 
-            expect( isInteger( '0' ) ).to.be.false;
+            assert.isFalse( isInteger( '0' ) );
 
         });
 
         it( 'should return false for "1"', function() {
 
-            expect( isInteger( '1' ) ).to.be.false;
+            assert.isFalse( isInteger( '1' ) );
 
         });
 
         it( 'should return false for "-1"', function() {
 
-            expect( isInteger( '-1' ) ).to.be.false;
+            assert.isFalse( isInteger( '-1' ) );
 
         });
 
         it( 'should return false for "0.1"', function() {
 
-            expect( isInteger( '0.1' ) ).to.be.false;
+            assert.isFalse( isInteger( '0.1' ) );
 
         });
 
         it( 'should return false for "-0.1"', function() {
 
-            expect( isInteger( '-0.1' ) ).to.be.false;
+            assert.isFalse( isInteger( '-0.1' ) );
 
         });
 
         it( 'should return false for true', function() {
 
-            expect( isInteger( true ) ).to.be.false;
+            assert.isFalse( isInteger( true ) );
 
         });
 
         it( 'should return false for false', function() {
 
-            expect( isInteger( false ) ).to.be.false;
+            assert.isFalse( isInteger( false ) );
 
         });
 
         it( 'should return false for null', function() {
 
-            expect( isInteger( null ) ).to.be.false;
+            assert.isFalse( isInteger( null ) );
 
         });
 
         it( 'should return false for undefined', function() {
 
-            expect( isInteger( undefined ) ).to.be.false;
+            assert.isFalse( isInteger( undefined ) );
 
         });
 
         it( 'should return false for no argument', function() {
 
-            expect( isInteger() ).to.be.false;
+            assert.isFalse( isInteger() );
 
         });
 
@@ -107,85 +106,85 @@ describe( 'isInteger', function() {
 
         it( 'should return true for 1', function() {
 
-            expect( isInteger( 1, options ) ).to.be.true;
+            assert.isTrue( isInteger( 1, options ) );
 
         });
 
         it( 'should return true for 0', function() {
 
-            expect( isInteger( 0, options ) ).to.be.true;
+            assert.isTrue( isInteger( 0, options ) );
 
         });
 
         it( 'should return true for -1', function() {
 
-            expect( isInteger( -1, options ) ).to.be.true;
+            assert.isTrue( isInteger( -1, options ) );
 
         });
 
         it( 'should return false for 0.1', function() {
 
-            expect( isInteger( 0.1, options ) ).to.be.false;
+            assert.isFalse( isInteger( 0.1, options ) );
 
         });
 
         it( 'should return false for -0.1', function() {
 
-            expect( isInteger( -0.1, options ) ).to.be.false;
+            assert.isFalse( isInteger( -0.1, options ) );
 
         });
 
         it( 'should return true for "0"', function() {
 
-            expect( isInteger( '0', options ) ).to.be.true;
+            assert.isTrue( isInteger( '0', options ) );
 
         });
 
         it( 'should return true for "1"', function() {
 
-            expect( isInteger( '1', options ) ).to.be.true;
+            assert.isTrue( isInteger( '1', options ) );
 
         });
 
         it( 'should return true for "-1"', function() {
 
-            expect( isInteger( '-1', options ) ).to.be.true;
+            assert.isTrue( isInteger( '-1', options ) );
 
         });
 
         it( 'should return false for "0.1"', function() {
 
-            expect( isInteger( '0.1', options ) ).to.be.false;
+            assert.isFalse( isInteger( '0.1', options ) );
 
         });
 
         it( 'should return false for "-0.1"', function() {
 
-            expect( isInteger( '-0.1', options ) ).to.be.false;
+            assert.isFalse( isInteger( '-0.1', options ) );
 
         });
 
         it( 'should return false for true', function() {
 
-            expect( isInteger( true, options ) ).to.be.false;
+            assert.isFalse( isInteger( true, options ) );
 
         });
 
         it( 'should return false for false', function() {
 
-            expect( isInteger( false, options ) ).to.be.false;
+            assert.isFalse( isInteger( false, options ) );
 
         });
 
         it( 'should return false for null', function() {
 
-            expect( isInteger( null, options ) ).to.be.false;
+            assert.isFalse( isInteger( null, options ) );
 
         });
 
         it( 'should return false for undefined', function() {
 
-            expect( isInteger( undefined, options ) ).to.be.false;
+            assert.isFalse( isInteger( undefined, options ) );
 
         });
 

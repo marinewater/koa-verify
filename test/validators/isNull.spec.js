@@ -1,5 +1,5 @@
 var chai = require( 'chai' );
-const expect = chai.expect;
+const assert = chai.assert;
 
 const isNull = require( '../../lib/validators/isNull' );
 
@@ -10,67 +10,67 @@ describe( 'isNull', function() {
 
         it( 'should return false for true', function() {
 
-            expect( isNull( true ) ).to.be.false;
+            assert.isFalse( isNull( true ) );
 
         });
 
         it( 'should return false for false', function() {
 
-            expect( isNull( false ) ).to.be.false;
+            assert.isFalse( isNull( false ) );
 
         });
 
         it( 'should return true for null', function() {
 
-            expect( isNull( null ) ).to.be.true;
+            assert.isTrue( isNull( null ) );
 
         });
 
         it( 'should return false for no argument', function() {
 
-            expect( isNull() ).to.be.false;
+            assert.isFalse( isNull() );
 
         });
 
         it( 'should return false for undefined', function() {
 
-            expect( isNull( undefined ) ).to.be.false;
+            assert.isFalse( isNull( undefined ) );
 
         });
 
         it( 'should return false for 1', function() {
 
-            expect( isNull( 1 ) ).to.be.false;
+            assert.isFalse( isNull( 1 ) );
 
         });
 
         it( 'should return false for 0', function() {
 
-            expect( isNull( 0 ) ).to.be.false;
+            assert.isFalse( isNull( 0 ) );
 
         });
 
         it( 'should return false for -1', function() {
 
-            expect( isNull( -1 ) ).to.be.false;
+            assert.isFalse( isNull( -1 ) );
 
         });
 
         it( 'should return false for an empty string', function() {
 
-            expect( isNull( '' ) ).to.be.false;
+            assert.isFalse( isNull( '' ) );
 
         });
 
         it( 'should return false for a string', function() {
 
-            expect( isNull( 'a' ) ).to.be.false;
+            assert.isFalse( isNull( 'a' ) );
 
         });
 
         it( 'should return false for "null"', function() {
 
-            expect( isNull( 'null' ) ).to.be.false;
+            assert.isFalse( isNull( 'null' ) );
 
         });
 
@@ -84,67 +84,67 @@ describe( 'isNull', function() {
 
         it( 'should return false for true', function() {
 
-            expect( isNull( true, options ) ).to.be.false;
+            assert.isFalse( isNull( true, options ) );
 
         });
 
         it( 'should return false for false', function() {
 
-            expect( isNull( false, options ) ).to.be.false;
+            assert.isFalse( isNull( false, options ) );
 
         });
 
         it( 'should return true for null', function() {
 
-            expect( isNull( null, options ) ).to.be.true;
+            assert.isTrue( isNull( null, options ) );
 
         });
 
         it( 'should return false for undefined', function() {
 
-            expect( isNull( undefined, options ) ).to.be.false;
+            assert.isFalse( isNull( undefined, options ) );
 
         });
 
         it( 'should return false for 1', function() {
 
-            expect( isNull( 1, options ) ).to.be.false;
+            assert.isFalse( isNull( 1, options ) );
 
         });
 
         it( 'should return false for 0', function() {
 
-            expect( isNull( 0, options ) ).to.be.false;
+            assert.isFalse( isNull( 0, options ) )
 
         });
 
         it( 'should return false for -1', function() {
 
-            expect( isNull( -1, options ) ).to.be.false;
+            assert.isFalse( isNull( -1, options ) );
 
         });
 
         it( 'should return false for an empty string', function() {
 
-            expect( isNull( '', options ) ).to.be.false;
+            assert.isFalse( isNull( '', options ) );
 
         });
 
         it( 'should return false for a string', function() {
 
-            expect( isNull( 'a', options ) ).to.be.false;
+            assert.isFalse( isNull( 'a', options ) );
 
         });
 
         it( 'should return true for "null"', function() {
 
-            expect( isNull( 'null', options ) ).to.be.true;
+            assert.isTrue( isNull( 'null', options ) );
 
         });
 
         it( 'should return false for "NULL"', function() {
 
-            expect( isNull( 'NULL', options ) ).to.be.false;
+            assert.isFalse( isNull( 'NULL', options ) );
 
         });
 
@@ -159,67 +159,67 @@ describe( 'isNull', function() {
 
         it( 'should return false for true', function() {
 
-            expect( isNull( true, options ) ).to.be.false;
+            assert.isFalse( isNull( true, options ) );
 
         });
 
         it( 'should return false for false', function() {
 
-            expect( isNull( false, options ) ).to.be.false;
+            assert.isFalse( isNull( false, options ) );
 
         });
 
         it( 'should return true for null', function() {
 
-            expect( isNull( null, options ) ).to.be.true;
+            assert.isTrue( isNull( null, options ) );
 
         });
 
         it( 'should return false for undefined', function() {
 
-            expect( isNull( undefined, options ) ).to.be.false;
+            assert.isFalse( isNull( undefined, options ) );
 
         });
 
         it( 'should return false for 1', function() {
 
-            expect( isNull( 1, options ) ).to.be.false;
+            assert.isFalse( isNull( 1, options ) );
 
         });
 
         it( 'should return false for 0', function() {
 
-            expect( isNull( 0, options ) ).to.be.false;
+            assert.isFalse( isNull( 0, options ) );
 
         });
 
         it( 'should return false for -1', function() {
 
-            expect( isNull( -1, options ) ).to.be.false;
+            assert.isFalse( isNull( -1, options ) );
 
         });
 
         it( 'should return false for an empty string', function() {
 
-            expect( isNull( '', options ) ).to.be.false;
+            assert.isFalse( isNull( '', options ) );
 
         });
 
         it( 'should return false for a string', function() {
 
-            expect( isNull( 'a', options ) ).to.be.false;
+            assert.isFalse( isNull( 'a', options ) );
 
         });
 
         it( 'should return true for "null"', function() {
 
-            expect( isNull( 'null', options ) ).to.be.true;
+            assert.isTrue( isNull( 'null', options ) );
 
         });
 
         it( 'should return true for "NULL"', function() {
 
-            expect( isNull( 'NULL', options ) ).to.be.true;
+            assert.isTrue( isNull( 'NULL', options ) );
 
         });
 
