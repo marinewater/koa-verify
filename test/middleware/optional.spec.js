@@ -1,6 +1,7 @@
 'use strict';
 
 const supertest = require( 'supertest' );
+const assert = require( 'chai' ).assert;
 
 const koa = require( 'koa' );
 const koa_body = require( 'koa-body' );
@@ -43,6 +44,81 @@ describe( 'middleware', function() {
                     boolean: undefined
                 })
                 .expect( 200, done );
+
+        } );
+
+        it( 'should set a default value if value is undefined', function( done ) {
+
+            app.use( function *() {
+
+                this.checkBody( 'boolean' ).optional( false ).isBoolean();
+
+                if ( this.errors ) {
+                    this.status = 400;
+                }
+                else {
+                    assert.isFalse( this.request.body.boolean );
+                    this.status = 200;
+                }
+
+            });
+
+            let request = supertest( app.listen() );
+
+            request.post( '/' )
+                .send()
+                .expect( 200, done );
+
+        } );
+
+        it( 'should not set a default value if value is not undefined', function( done ) {
+
+            app.use( function *() {
+
+                this.checkBody( 'boolean' ).optional( false ).isBoolean();
+
+                if ( this.errors ) {
+                    this.status = 400;
+                }
+                else {
+                    assert.isTrue( this.request.body.boolean );
+                    this.status = 200;
+                }
+
+            });
+
+            let request = supertest( app.listen() );
+
+            request.post( '/' )
+                .send({
+                    boolean: true
+                })
+                .expect( 200, done );
+
+        } );
+
+        it( 'should fail a test if a default value is provided', function( done ) {
+
+            app.use( function *() {
+
+                this.checkBody( 'boolean' ).optional( false ).isBoolean();
+
+                if ( this.errors ) {
+                    this.status = 400;
+                }
+                else {
+                    this.status = 200;
+                }
+
+            });
+
+            let request = supertest( app.listen() );
+
+            request.post( '/' )
+                .send({
+                    boolean: 'a'
+                })
+                .expect( 400, done );
 
         } );
 
