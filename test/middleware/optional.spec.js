@@ -97,6 +97,29 @@ describe( 'middleware', function() {
 
         } );
 
+        it( 'should not set a default value if query param is not present', function( done ) {
+
+            app.use( function *() {
+
+                this.checkQuery( 'boolean' ).optional( false ).isBoolean();
+
+                if ( this.errors ) {
+                    this.status = 400;
+                }
+                else {
+                    assert.isFalse( this.request.query.boolean );
+                    this.status = 200;
+                }
+
+            });
+
+            let request = supertest( app.listen() );
+
+            request.get( '/' )
+                .expect( 200, done );
+
+        } );
+
         it( 'should fail a test if a default value is provided', function( done ) {
 
             app.use( function *() {
