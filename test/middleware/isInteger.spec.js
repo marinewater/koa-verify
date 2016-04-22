@@ -1,6 +1,7 @@
 'use strict';
 
 const supertest = require( 'supertest' );
+const assert = require( 'chai' ).assert;
 
 const koa = require( 'koa' );
 const koa_body = require( 'koa-body' );
@@ -238,6 +239,7 @@ describe( 'middleware isInteger', function() {
                         this.status = 400;
                     }
                     else {
+                        assert.strictEqual( this.params.integer, 1 );
                         this.status = 200;
                     }
 
